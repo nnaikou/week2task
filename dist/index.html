@@ -6,13 +6,48 @@
 	<meta charset="UTF-8">
 	<script src="/src.a2b27638.js" defer=""></script>
 <link rel="stylesheet" href="/src.a2b27638.css"></head>
-
 <body>
-	<div id="app"></div>
-	<p>Voihan kehveli</p><p>
+	<h2>Taulukko</h2>
+
+	<table>
+		<thead>
+			<tr><th>Username</th><th>Email</th><th>Address</th><th>Admin</th></tr>
+		</thead>
+		<tbody id="tableBody">
+			<tr><td>Webmaster</td><td>example1@email.com</td><td>Demoland 123</td><td>X</td></tr>
+			<tr><td>User123</td><td>example2@email.com</td><td>	Userplace 321</td><td>-</td></tr>
+			<tr><td>Another123</td><td>example3@email.com</td><td>AnotherPlace 21</td><td>-</td></tr>
+			
+		</tbody>
+	</table>
 	
-		<button id="btn">Press</button>
+	<br>
+
+	<form id="myForm">
+		<fieldset>
+			<legend>Information</legend>
+			<label for="input-username">Username:</label>
+			<input type="text" id="input-username"><br>
+
+			<label for="input-email">Email:</label>
+			<input type="text" id="input-email"><br>
+
+			<label for="input-address">Address:</label>
+			<input type="text" id="input-address"><br>
+
+			<label for="input-admin">Admin:</label>
+			<input type="checkbox" id="input-admin" name="input-admin">
+			<button id="submit-data">Submit</button>
+
+		</fieldset>
+
 	
-</p></body>
+
+	</form>
+	
+	
+	
+	
+</body>
 
 </html>

@@ -176,19 +176,40 @@ module.hot.accept(reloadCSS);
 "use strict";
 
 require("./styles.css");
-var dit = function dit(x) {
-  return "Tämä on " + x;
-};
-console.log(dit("koira"));
-var button = document.getElementById("btn");
-
-/*let hello = function(x) {*/
-function hello(x) {
-  console.log("Luku on " + x);
+// this is for preventing the site on reloading
+var form = document.getElementById("myForm");
+function handleForm(event) {
+  event.preventDefault();
 }
-button.addEventListener("click", function () {
-  return hello(5);
+form.addEventListener('submit', handleForm);
+var submitButton = document.getElementById("submit-data");
+submitButton.addEventListener("click", function () {
+  var tableBody = document.getElementById("tableBody");
+  var newCell = document.createElement("tr");
+  var username = document.getElementById("input-username").value;
+  var email = document.getElementById("input-email").value;
+  var address = document.getElementById("input-address").value;
+  if (document.querySelector("#input-admin").checked) {
+    newCell.innerHTML = "<td>" + username + "</td><td>" + email + "</td><td>" + address + "</td><td>X</td>";
+  } else {
+    newCell.innerHTML = "<td>" + username + "</td><td>" + email + "</td><td>" + address + "</td><td>-</td>";
+  }
+  tableBody.appendChild(newCell);
 });
+
+/*let dit = x => "Tämä on "+x
+
+console.log(dit("koira"))
+
+let button = document.getElementById("btn")
+
+/*let hello = function(x) {*
+function hello(x) {
+    console.log("Luku on "+x)
+}
+
+
+button.addEventListener("click", () => hello(5))*/
 },{"./styles.css":"src/styles.css"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -214,7 +235,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37497" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37885" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
