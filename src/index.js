@@ -7,26 +7,70 @@ form.addEventListener('submit', handleForm);
 
 
 // counter for how many children we have in HTML Table, in starting point six:
-let i = 6
+let i = 3
+
+let users = []
+
+const tableBody = document.getElementById("tableBody")
+
+// lets generate 3 children to the table in start
+let newCell0 = document.createElement("tr")
+let user0 = {username: "Webmaster", email: "example1@email.com", address: "Demoland 123"}
+newCell0.innerHTML = "<td>"+user0.username+"</td><td>"+user0.email+"</td><td>"+user0.address+"</td><td>X</td>"
+tableBody.appendChild(newCell0)
+users.push(user0)
+
+let newCell1 = document.createElement("tr")
+let user1 = {username: "User123", email: "example2@email.com", address: "Userplace 321"}
+newCell1.innerHTML = "<td>"+user1.username+"</td><td>"+user1.email+"</td><td>"+user1.address+"</td><td>X</td>"
+tableBody.appendChild(newCell1)
+users.push(user1)
+
+let newCell2 = document.createElement("tr")
+let user2 = {username: "Another123", email: "example3@email.com", address: "AnotherPlace 21"}
+newCell2.innerHTML = "<td>"+user2.username+"</td><td>"+user2.email+"</td><td>"+user2.address+"</td><td>X</td>"
+tableBody.appendChild(newCell2)
+users.push(user2)
 
 const submitButton = document.getElementById("submit-data")
 
 submitButton.addEventListener("click", () => {
-    const tableBody = document.getElementById("tableBody")
 
     let newCell = document.createElement("tr")
 
-    let username = document.getElementById("input-username").value
-    let email = document.getElementById("input-email").value
-    let address = document.getElementById("input-address").value
+    let username0 = document.getElementById("input-username").value
+
+
+
+    let email0 = document.getElementById("input-email").value
+    let address0 = document.getElementById("input-address").value
+
+    // task4:
+    let k = 0
+    users.forEach((u) => {
+        if(u.username == username0) {
+            k++
+        }
+    })
+
+    if(k>0) {
+        let usernameTemporary = username0 + " ["+(k-1)+"]"
+        if (document.querySelector("#input-admin").checked) {
+            newCell.innerHTML = "<td>"+usernameTemporary+"</td><td>"+email0+"</td><td>"+address0+"</td><td>X</td>"
+        } else {
+            newCell.innerHTML = "<td>"+usernameTemporary+"</td><td>"+email0+"</td><td>"+address0+"</td><td>-</td>"
+        }
+    } else {
 
     if (document.querySelector("#input-admin").checked) {
-        newCell.innerHTML = "<td>"+username+"</td><td>"+email+"</td><td>"+address+"</td><td>X</td>"
+        newCell.innerHTML = "<td>"+username0+"</td><td>"+email0+"</td><td>"+address0+"</td><td>X</td>"
     } else {
-        newCell.innerHTML = "<td>"+username+"</td><td>"+email+"</td><td>"+address+"</td><td>-</td>"
+        newCell.innerHTML = "<td>"+username0+"</td><td>"+email0+"</td><td>"+address0+"</td><td>-</td>"
+    }
     }
 
     tableBody.appendChild(newCell)
+    users.push({username: username0, email: email0, address: address0})
     i++
 })
 
@@ -41,6 +85,8 @@ emptyButton.addEventListener("click", () => {
         console.log("x")
         i--
     }
+
+    users = []
     
 })
 

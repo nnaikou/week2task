@@ -184,20 +184,72 @@ function handleForm(event) {
 form.addEventListener('submit', handleForm);
 
 // counter for how many children we have in HTML Table, in starting point six:
-var i = 6;
+var i = 3;
+var users = [];
+var tableBody = document.getElementById("tableBody");
+
+// lets generate 3 children to the table in start
+var newCell0 = document.createElement("tr");
+var user0 = {
+  username: "Webmaster",
+  email: "example1@email.com",
+  address: "Demoland 123"
+};
+newCell0.innerHTML = "<td>" + user0.username + "</td><td>" + user0.email + "</td><td>" + user0.address + "</td><td>X</td>";
+tableBody.appendChild(newCell0);
+users.push(user0);
+var newCell1 = document.createElement("tr");
+var user1 = {
+  username: "User123",
+  email: "example2@email.com",
+  address: "Userplace 321"
+};
+newCell1.innerHTML = "<td>" + user1.username + "</td><td>" + user1.email + "</td><td>" + user1.address + "</td><td>X</td>";
+tableBody.appendChild(newCell1);
+users.push(user1);
+var newCell2 = document.createElement("tr");
+var user2 = {
+  username: "Another123",
+  email: "example3@email.com",
+  address: "AnotherPlace 21"
+};
+newCell2.innerHTML = "<td>" + user2.username + "</td><td>" + user2.email + "</td><td>" + user2.address + "</td><td>X</td>";
+tableBody.appendChild(newCell2);
+users.push(user2);
 var submitButton = document.getElementById("submit-data");
 submitButton.addEventListener("click", function () {
-  var tableBody = document.getElementById("tableBody");
   var newCell = document.createElement("tr");
-  var username = document.getElementById("input-username").value;
-  var email = document.getElementById("input-email").value;
-  var address = document.getElementById("input-address").value;
-  if (document.querySelector("#input-admin").checked) {
-    newCell.innerHTML = "<td>" + username + "</td><td>" + email + "</td><td>" + address + "</td><td>X</td>";
+  var username0 = document.getElementById("input-username").value;
+  var email0 = document.getElementById("input-email").value;
+  var address0 = document.getElementById("input-address").value;
+
+  // task4:
+  var k = 0;
+  users.forEach(function (u) {
+    if (u.username == username0) {
+      k++;
+    }
+  });
+  if (k > 0) {
+    var usernameTemporary = username0 + " [" + (k - 1) + "]";
+    if (document.querySelector("#input-admin").checked) {
+      newCell.innerHTML = "<td>" + usernameTemporary + "</td><td>" + email0 + "</td><td>" + address0 + "</td><td>X</td>";
+    } else {
+      newCell.innerHTML = "<td>" + usernameTemporary + "</td><td>" + email0 + "</td><td>" + address0 + "</td><td>-</td>";
+    }
   } else {
-    newCell.innerHTML = "<td>" + username + "</td><td>" + email + "</td><td>" + address + "</td><td>-</td>";
+    if (document.querySelector("#input-admin").checked) {
+      newCell.innerHTML = "<td>" + username0 + "</td><td>" + email0 + "</td><td>" + address0 + "</td><td>X</td>";
+    } else {
+      newCell.innerHTML = "<td>" + username0 + "</td><td>" + email0 + "</td><td>" + address0 + "</td><td>-</td>";
+    }
   }
   tableBody.appendChild(newCell);
+  users.push({
+    username: username0,
+    email: email0,
+    address: address0
+  });
   i++;
 });
 var emptyButton = document.getElementById("empty-table");
@@ -208,6 +260,7 @@ emptyButton.addEventListener("click", function () {
     console.log("x");
     i--;
   }
+  users = [];
 });
 
 /*let dit = x => "Tämä on "+x
@@ -248,7 +301,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37885" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44913" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
