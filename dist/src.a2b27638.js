@@ -182,6 +182,9 @@ function handleForm(event) {
   event.preventDefault();
 }
 form.addEventListener('submit', handleForm);
+
+// counter for how many children we have in HTML Table, in starting point six:
+var i = 6;
 var submitButton = document.getElementById("submit-data");
 submitButton.addEventListener("click", function () {
   var tableBody = document.getElementById("tableBody");
@@ -195,6 +198,16 @@ submitButton.addEventListener("click", function () {
     newCell.innerHTML = "<td>" + username + "</td><td>" + email + "</td><td>" + address + "</td><td>-</td>";
   }
   tableBody.appendChild(newCell);
+  i++;
+});
+var emptyButton = document.getElementById("empty-table");
+emptyButton.addEventListener("click", function () {
+  var tableBody = document.getElementById("tableBody");
+  for (var j = i; j > 0; j--) {
+    tableBody.removeChild(tableBody.lastChild);
+    console.log("x");
+    i--;
+  }
 });
 
 /*let dit = x => "Tämä on "+x

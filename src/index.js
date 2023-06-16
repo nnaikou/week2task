@@ -5,6 +5,10 @@ var form = document.getElementById("myForm");
 function handleForm(event) { event.preventDefault(); } 
 form.addEventListener('submit', handleForm);
 
+
+// counter for how many children we have in HTML Table, in starting point six:
+let i = 6
+
 const submitButton = document.getElementById("submit-data")
 
 submitButton.addEventListener("click", () => {
@@ -23,8 +27,22 @@ submitButton.addEventListener("click", () => {
     }
 
     tableBody.appendChild(newCell)
+    i++
 })
 
+
+const emptyButton = document.getElementById("empty-table")
+
+emptyButton.addEventListener("click", () => {
+    const tableBody = document.getElementById("tableBody")
+    
+    for(let j=i; j>0; j--) {
+        tableBody.removeChild(tableBody.lastChild)
+        console.log("x")
+        i--
+    }
+    
+})
 
 
 
